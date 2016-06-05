@@ -1,0 +1,24 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Tests for module-linker",
+  "author": "Eric Vallee <eric_vallee@webificservices.com>",
+  "main": "",
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "http://mit-license.org/"
+    }
+  ],
+  "dependencies": {
+    "bluebird": "3.x",
+    "act-on-modules": "0.1.0"
+  },
+  "scripts": {
+    "test": "nodeunit test"
+  },
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  }
+}

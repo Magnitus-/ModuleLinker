@@ -1,0 +1,26 @@
+{
+  "name": "module-linker",
+  "version": "1.0.0",
+  "description": "Library that links local modules by name",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Magnitus-/ModuleLinker"
+  },
+  "bugs": {
+    "url": "http://github.com/Magnitus-/ModuleLinker/issues",
+    "email": "eric_vallee@webificservices.com"
+  },
+  "scripts": {
+    "test": "cp -r ./lib ./test/lib && (cd ./test; docker-compose build; docker-compose up) && rm -r ./test/lib"
+  },
+  "author": "Eric Vallee (eric_vallee@webificservices.com)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "3.x",
+    "act-on-modules": "0.1.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
