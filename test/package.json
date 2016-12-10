@@ -15,7 +15,8 @@
     "act-on-modules": "0.1.0"
   },
   "scripts": {
-    "test": "nodeunit test"
+    "test-npm": "nodeunit ./test/npm.js",
+    "test-yarn": "nodeunit ./test/yarn.js"
   },
   "license": "MIT",
   "directories": {

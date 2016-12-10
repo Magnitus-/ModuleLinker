@@ -1,6 +1,6 @@
 {
   "name": "module-linker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Library that links local modules by name",
   "main": "./lib/index.js",
   "repository": {
@@ -12,7 +12,8 @@
     "email": "eric_vallee@webificservices.com"
   },
   "scripts": {
-    "test": "cp -r ./lib ./test/lib && (cd ./test; docker-compose build; docker-compose up) && rm -r ./test/lib"
+    "test-npm": "cp -r ./lib ./test/lib && (cd ./test; docker-compose build; docker-compose up npm) && rm -r ./test/lib",
+    "test-yarn": "cp -r ./lib ./test/lib && (cd ./test; docker-compose build; docker-compose up yarn) && rm -r ./test/lib"
   },
   "author": "Eric Vallee (eric_vallee@webificservices.com)",
   "license": "MIT",

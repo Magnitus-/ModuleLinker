@@ -1,9 +1,11 @@
 FROM node:4
 
+RUN npm install -g yarn
+
 COPY ./lib /opt/lib
 COPY ./app /opt/app
 COPY ./shared /opt/shared
 COPY ./test /opt/test
 COPY ./package.json /opt/
 
-CMD (cd /opt; npm install; npm install -g nodeunit; chmod -R 777 .; npm test)
+CMD (cd /opt; npm install; npm install -g nodeunit; chmod -R 777 .; npm run test-${TOOL})

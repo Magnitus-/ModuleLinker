@@ -1,3 +1,10 @@
-app:
-  container_name: module-linker-tests
+npm:
+  container_name: module-linker-npm-tests
   build: .
+  environment:
+    - TOOL=npm
+yarn:
+  container_name: module-linker-yarn-tests
+  build: .
+  environment:
+    - TOOL=yarn

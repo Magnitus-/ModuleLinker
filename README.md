@@ -14,18 +14,29 @@ It uses 'npm link' the linking and 'act-on-modules' project to find modules (rec
 
 This method will recursively traverse a series of directories it is given and globally link (to make available to the resolver) any module it finds.
 
+Additionally, you can specify the tool (as a string) that will perform the link as a string (only 'npm' and 'yarn' are supported). If omitted, npm is assumed.
+
 ###Signature
 
 ```
 const moduleLinker = require('module-linker');
-moduleLinker.linker([<Strings of paths containing modules that will be required>]) //Returns a promise
+moduleLinker.linker([<Strings of paths containing modules that will be required>], <tool>) //Returns a promise
 ```
 
 ###Example
 
 ```
+//Linking with the default choice of npm
 const moduleLinker = require('module-linker');
 moduleLinker.linker(['/home/eric/nodeJsModules']).then(() => {
+    console.log('all done');
+});
+```
+
+```
+//Linking with yarn
+const moduleLinker = require('module-linker');
+moduleLinker.linker(['/home/eric/nodeJsModules'], 'yarn').then(() => {
     console.log('all done');
 });
 ```
@@ -36,18 +47,29 @@ moduleLinker.linker(['/home/eric/nodeJsModules']).then(() => {
 
 This method will recursively traverse a series of directories it is given and resolve any local dependencies it finds. Dependencies need to be indicated in the localDependencies entry of package.json files.
 
+Additionally, you can specify the tool (as a string) that will perform the resolution as a string (only 'npm' and 'yarn' are supported). If omitted, npm is assumed.
+
 ###Signature
 
 ```
 const moduleLinker = require('module-linker');
-moduleLinker.resolver([<Strings of paths containing code that has local dependencies that need to be resolved>]) //Returns a promise
+moduleLinker.resolver([<Strings of paths containing code that has local dependencies that need to be resolved>], <tool>) //Returns a promise
 ```
 
 ###Example
 
 ```
+//Resolving with the default choice of npm
 const moduleLinker = require('module-linker');
 moduleLinker.resolver(['/home/eric/app', '/home/eric/nodeJsModules']).then(() => {
+    console.log('all done');
+});
+```
+
+```
+//Resolving with yarn
+const moduleLinker = require('module-linker');
+moduleLinker.resolver(['/home/eric/app', '/home/eric/nodeJsModules'], 'yarn').then(() => {
     console.log('all done');
 });
 ```
@@ -58,18 +80,29 @@ moduleLinker.resolver(['/home/eric/app', '/home/eric/nodeJsModules']).then(() =>
 
 A direct call to the library will call both the linker and resolver (sequentially as the resolver is dependent on the linker being finished).
 
+Additionally, you can specify the tool (as a string) that will perform the resolution as a string (only 'npm' and 'yarn' are supported). If omitted, npm is assumed.
+
 ###Signature
 
 ```
 const moduleLinker = require('module-linker');
-moduleLinker([<Strings of paths containing code that has local dependencies that need to be resolved>], [<Strings of paths containing modules that will be required>]) //Returns a promise
+moduleLinker([<Strings of paths containing code that has local dependencies that need to be resolved>], [<Strings of paths containing modules that will be required>], <tool>) //Returns a promise
 ```
 
 ###Example
 
 ```
+//Using default choice of npm
 const moduleLinker = require('module-linker');
 moduleLinker(['/home/eric/app', '/home/eric/nodeJsModules'], ['/home/eric/nodeJsModules']).then(() => {
+    console.log('all done');
+});
+```
+
+```
+//Using yarn
+const moduleLinker = require('module-linker');
+moduleLinker(['/home/eric/app', '/home/eric/nodeJsModules'], ['/home/eric/nodeJsModules'], 'yarn').then(() => {
     console.log('all done');
 });
 ```
@@ -110,7 +143,9 @@ Ex:
 
 ##Running Tests
 
-Run ```npm test```
+Run ```npm test run npm``` to test this module with npm
+
+Run ```npm test run yarn``` to test this module with yarn
 
 Because I didn't want the tests to pollute anyone's global space with throwaway test modules, I dockerized them so you'll need docker and docker-composed installed (as well as a user with enough privilege to execute docker without sudo) to run the tests.
 
